@@ -24,7 +24,7 @@ let formSchema = yup.object().shape({
 		.string()
 		.required(validationErrors.sizeIncorrect)
 		.trim()
-		.oneOf(['s', 'm', 'l']),
+		.oneOf(['S', 'M', 'L']),
 });
 // 👇 This array could help you construct your checkboxes using .map in the JSX.
 const toppings = [
@@ -43,7 +43,6 @@ const initialFormValues = {
 
 export default function Form() {
 	const [values, setValues] = useState(initialFormValues);
-	const [disabled, setDisabled] = useState(true);
 	const [errors, setErrors] = useState('');
 	const [success, setSuccess] = useState('');
 	const [failure, setFailure] = useState('');
@@ -72,7 +71,7 @@ export default function Form() {
 		setAllowSubmit(false);
 
 		try {
-			const res = await axios.post('http://localhost:9009/api/order', values);
+			await axios.post('http://localhost:9009/api/order', values);
 			setSuccess('Thank you for your order!');
 			setFailure('');
 			setValues(initialFormValues);
@@ -118,9 +117,9 @@ export default function Form() {
 						value={values.size}
 					>
 						<option value="">----Choose Size----</option>
-						<option value="s">S</option>
-						<option value="m">M</option>
-						<option value="l">L</option>
+						<option value="S">S</option>
+						<option value="M">M</option>
+						<option value="L">L</option>
 					</select>
 				</div>
 				{errors.size && <div className="error">{errors.size}</div>}
