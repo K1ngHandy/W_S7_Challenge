@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 function Home() {
 	const navigate = useNavigate();
 
-	const clickHandler = () => {
+	const navigateHome = () => {
 		navigate('/order');
 	};
 
@@ -17,7 +17,7 @@ function Home() {
 				alt="order-pizza"
 				style={{ cursor: 'pointer' }}
 				src={pizza}
-				onClick={() => clickHandler()}
+				onClick={() => navigateHome()}
 			/>
 		</div>
 	);
