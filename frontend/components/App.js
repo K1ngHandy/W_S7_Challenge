@@ -1,18 +1,27 @@
-import React from 'react'
-import Home from './Home'
-import Form from './Form'
+import React from 'react';
+import Home from './Home';
+import Form from './Form';
+import { Routes, Route, Link } from 'react-router-dom';
 
 function App() {
-  return (
-    <div id="app">
-      <nav>
-        {/* NavLinks here */}
-      </nav>
-      {/* Route and Routes here */}
-      <Home />
-      <Form />
-    </div>
-  )
+	return (
+		<div id="app">
+			<nav>
+				<Link to="/">Home</Link>
+				<Link to="/order">Order</Link>
+			</nav>
+			<Routes>
+				<Route
+					index
+					element={<Home />}
+				/>
+				<Route
+					path="/order"
+					element={<Form />}
+				/>
+			</Routes>
+		</div>
+	);
 }
 
-export default App
+export default App;
