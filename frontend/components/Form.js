@@ -117,9 +117,9 @@ export default function Form() {
 						value={values.size}
 					>
 						<option value="">----Choose Size----</option>
-						<option value="S">S</option>
-						<option value="M">M</option>
-						<option value="L">L</option>
+						<option value="S">Small</option>
+						<option value="M">Medium</option>
+						<option value="L">Large</option>
 					</select>
 				</div>
 				{errors.size && <div className="error">{errors.size}</div>}
