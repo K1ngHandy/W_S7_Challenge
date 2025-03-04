@@ -14,7 +14,7 @@ describe('Sprint 7 Challenge Learner Tests', () => {
     [4] sum('1', 2) // returns 3
     [5] sum('10', '3') // returns 13
   */
-	describe('math function test', () => {
+	describe('Math function test', () => {
 		test('throw error for invalid numbers', () => {
 			const message = 'pass valid numbers';
 			expect(() => sum()).toThrowError(message);
@@ -50,6 +50,33 @@ describe('Sprint 7 Challenge Learner Tests', () => {
 	// test('you can comment out this test', () => {
 	//   expect(true).toBe(false)
 	// })
+	describe('Hello World component test', () => {
+		beforeEach(() => render(<HelloWorld />));
+		test('home link renders', () => {
+			const link = screen.queryByText('Home');
+			expect(link).toBeInTheDocument();
+		});
+		test('about link renders', () => {
+			const link = screen.queryByText('About');
+			expect(link).toBeInTheDocument();
+		});
+		test('blog link renders', () => {
+			const link = screen.queryByText('Blog');
+			expect(link).toBeInTheDocument();
+		});
+		test('text renders as The Truth', () => {
+			const text = screen.queryByText('The Truth');
+			expect(text).toBeInTheDocument();
+		});
+		test('text renders as Javascript is pretty awesome', () => {
+			const text = screen.queryByText('JavaScript is pretty awesome');
+			expect(text).toBeInTheDocument();
+		});
+		test('text renders closely to javascript is pretty', () => {
+			const text = screen.queryByText('javaScript is pretty', { exact: false });
+			expect(text).toBeInTheDocument();
+		});
+	});
 });
 
 function sum(a, b) {
