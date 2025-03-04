@@ -1,9 +1,9 @@
-import React from 'react'
-import { render, screen } from '@testing-library/react'
-import '@testing-library/jest-dom'
+import React from 'react';
+import { render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 
 describe('Sprint 7 Challenge Learner Tests', () => {
-  /*
+	/*
   👉 TASK 1 - Unit Testing of sum function at the bottom of this module
 
   Test the following. You can create separate tests or a single test with multiple assertions.
@@ -14,8 +14,26 @@ describe('Sprint 7 Challenge Learner Tests', () => {
     [4] sum('1', 2) // returns 3
     [5] sum('10', '3') // returns 13
   */
-
-  /*
+	describe('math function test', () => {
+		test('throw error for invalid numbers', () => {
+			const message = 'pass valid numbers';
+			expect(() => sum()).toThrowError(message);
+			expect(() => sum(2, 'seven')).toThrowError(message);
+		});
+		test('correctly add 2 integers', () => {
+			let result = sum(1, 3);
+			expect(result).toBe(4);
+		});
+		test('correctly add number string and integer', () => {
+			let result = sum('1', 2);
+			expect(result).toBe(3);
+		});
+		test('correctly add 2 string numbers', () => {
+			let result = sum('10', '3');
+			expect(result).toBe(13);
+		});
+	});
+	/*
   👉 TASK 2 - Integration Testing of HelloWorld component at the bottom of this module
 
   Test the <HelloWorld /> component found below...
@@ -29,35 +47,35 @@ describe('Sprint 7 Challenge Learner Tests', () => {
     [5] renders a text that reads "JavaScript is pretty awesome"
     [6] renders a text that includes "javaScript is pretty" (use exact = false)
   */
-  test('you can comment out this test', () => {
-    expect(true).toBe(false)
-  })
-})
+	// test('you can comment out this test', () => {
+	//   expect(true).toBe(false)
+	// })
+});
 
 function sum(a, b) {
-  a = Number(a)
-  b = Number(b)
-  if (isNaN(a) || isNaN(b)) {
-    throw new Error('pass valid numbers')
-  }
-  return a + b
+	a = Number(a);
+	b = Number(b);
+	if (isNaN(a) || isNaN(b)) {
+		throw new Error('pass valid numbers');
+	}
+	return a + b;
 }
 
 function HelloWorld() {
-  return (
-    <div>
-      <h1>Hello World Component</h1>
-      <nav>
-        <a href='#'>Home</a>
-        <a href='#'>About</a>
-        <a href='#'>Blog</a>
-      </nav>
-      <main>
-        <section>
-          <h2>The Truth</h2>
-          <p>JavaScript is pretty awesome</p>
-        </section>
-      </main>
-    </div>
-  )
+	return (
+		<div>
+			<h1>Hello World Component</h1>
+			<nav>
+				<a href="#">Home</a>
+				<a href="#">About</a>
+				<a href="#">Blog</a>
+			</nav>
+			<main>
+				<section>
+					<h2>The Truth</h2>
+					<p>JavaScript is pretty awesome</p>
+				</section>
+			</main>
+		</div>
+	);
 }
