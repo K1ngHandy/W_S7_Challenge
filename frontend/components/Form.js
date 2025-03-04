@@ -22,9 +22,9 @@ let formSchema = yup.object().shape({
 	// size
 	size: yup
 		.string()
-		.required(validationErrors.sizeIncorrect)
+		.required()
 		.trim()
-		.oneOf(['S', 'M', 'L']),
+		.oneOf(['S', 'M', 'L'], validationErrors.sizeIncorrect),
 });
 // 👇 This array could help you construct your checkboxes using .map in the JSX.
 const toppings = [
@@ -72,12 +72,31 @@ export default function Form() {
 
 		try {
 			await axios.post('http://localhost:9009/api/order', values);
-			setSuccess('Thank you for your order!');
+
+			const sizeNames = {
+				S: 'small',
+				M: 'medium',
+				L: 'large',
+			};
+
+			const length = values.toppings.length;
+
+			setSuccess(
+				`Thank you for your order, ${values.fullName}! Your ${
+					sizeNames[values.size]
+				} pizza with ${
+					length === 0
+						? 'no toppings'
+						: length === 1
+						? '1 topping'
+						: `${length} toppings`
+				} is on the way.`
+			);
 			setFailure('');
 			setValues(initialFormValues);
 		} catch (err) {
 			setSuccess('');
-			setFailure('Something went wrong');
+			setFailure(err);
 			console.error('Error submitting order:', err);
 		} finally {
 			setAllowSubmit(true);
